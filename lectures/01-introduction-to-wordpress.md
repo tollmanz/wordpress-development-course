@@ -99,6 +99,31 @@ Refs/Credits:
 
 ## What is WordPress?
 
+* A bloggin platform
+* A CMS
+* An application framework
+* A community
+* Software that runs websites
+
 ## WordPress.com, WordPress.org, and Automattic
+
+* Automattic 
+	* A web development company founded in 2005 by Matt Mullenweg
+	* Products:
+		* WordPress.com
+		* Gravatar
+		* BuddyPress
+		* Akismet
+* WordPress.com
+	* A hosted version of WordPress that is a product of Automattic
+* WordPress.org
+	* A website dedicated to providing resources for the WordPress OSS
+	* Managed by Audrey Capital and volunteers
+
+Refs/Credits:
+
+* http://wordpress.org
+* http://automattic.com
+* http://wordpress.com
 
 ## The Community
