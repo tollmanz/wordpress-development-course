@@ -48,11 +48,43 @@ Refs/Credits:
 	* The wiki or Codex is launched
 * May 13, 2004
 	* Six Apart, the company that develops Movable Type, announced significant license changes, which increased the costs of running a MT blog
-	* WP developers built a migration tool, which nearly doubled the amount of WP downloads
+	* WP developers built a migration tool, which nearly doubled the amount of WP downloads (~18,000)
 * May 22, 2004: WordPress 1.2 (Mingus)
 	* Actions and filters are added to core
 	* The Hello Dolly plugin is released and shipped with WordPress
 	* Fully internationalized
+* February 17, 2005: WordPress 1.5 (Strayhorn)
+	* Theme system implemented
+* December 31, 2005: WordPress 2.0 (Ellington)
+	* Overhauled admin UI
+	* User roles system
+	* Persistent caching system
+	* Downloaded 1.8 million times (as noted on the [2.1 release notes](http://codex.wordpress.org/Version_2.1))
+* August 5th, 2006: WordCamp San Francisco
+	* The first WordCamp
+* March 5, 2007: Mullenweg named 16th most influential person on the web
+	* #1 Eric Schmidt, Larry Page, and Sergey Brin (collectively worth $33 billion)
+	* #2 Steve Jobs
+* 2007: Plugin directory is launched
+* 2008: Theme directory is launched
+* March 29, 2008: WordPress 2.5 (Brecker)
+	* Redesigned admin UI
+	* Shortcode API introduced
+* December 10, 2008: WordPress 2.7 (Coltrane)
+	* One click plugin installs
+	* One click WordPress update
+	* Settings API
+* May 27, 2010: capital_P_dangit
+* June 17, 2010: WordPress 3.0 (Monk)
+	* Merged WordPress and WordPress MU
+	* The "Twenty" deafult theme series begins
+	* Custom menus
+	* Custom Post Types and Custom Taxonomies
+* 2011: WordPress is powering 25% of websites
+* December 11, 2012: WordPress 3.5 (Jones)
+	* Improved media manager
+* April 2012: WordPress powers 49% of top 100 blogs
+* July 6, 2013: 67,971,359 WordPress sites in the world
 
 Refs/Credits: 
 
@@ -60,6 +92,10 @@ Refs/Credits:
 * http://wordpress.org/about/history/
 * https://github.com/tannerm/wp_archive
 * http://ma.tt
+* http://wordpress.org/about/roadmap/
+* http://wordpress.org/download/release-archive/
+* http://lorelleteaches.com/2012/10/14/the-history-of-wordpress/
+* http://www.pcworld.com/article/129301/article.html?page=5
 
 ## What is WordPress?
 
