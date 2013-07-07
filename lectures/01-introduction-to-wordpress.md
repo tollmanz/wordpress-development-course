@@ -129,6 +129,8 @@ Refs/Credits:
 	* \#wordpress-dev
 	* http://wordpress.org/support/
 	* http://wordpress.stackexchange.com
+	* http://make.wordpress.org
+	* http://core.trac.wordpress.org/
 
 ## What is WordPress?
 
