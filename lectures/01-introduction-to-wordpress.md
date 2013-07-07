@@ -133,7 +133,7 @@ Refs/Credits:
 	* Promotes development of the core product, as well as plugins and themes
 	* Provides support for users and developers
 * Important community resources
-	* #wordpress
-	* #wordpress-dev
+	* \#wordpress
+	* \#wordpress-dev
 	* http://wordpress.org/support/
 	* http://wordpress.stackexchange.com
