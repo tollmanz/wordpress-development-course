@@ -13,6 +13,9 @@
 	* wp_usermeta: metadata associated with users
 	* wp_users: holds basic user information
 * There are repeated motifs in the database (primary object table, metadata table); however, these motifs are not reliable.
+* Can use database without writing any SQL
+* Advantage of set schema is a predictable set of tables to use 
+* Disadvantage is that the schema is not always optimized for a dev's user case
 
 Refs/Credits
 
