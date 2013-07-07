@@ -97,14 +97,6 @@ Refs/Credits:
 * http://lorelleteaches.com/2012/10/14/the-history-of-wordpress/
 * http://www.pcworld.com/article/129301/article.html?page=5
 
-## What is WordPress?
-
-* A bloggin platform
-* A CMS
-* An application framework
-* A community
-* Software that runs websites
-
 ## WordPress.com, WordPress.org, and Automattic
 
 * Automattic 
@@ -137,3 +129,11 @@ Refs/Credits:
 	* \#wordpress-dev
 	* http://wordpress.org/support/
 	* http://wordpress.stackexchange.com
+
+## What is WordPress?
+
+* A blogging platform
+* A CMS
+* An application framework
+* A community
+* Software that runs websites
