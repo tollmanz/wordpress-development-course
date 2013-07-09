@@ -16,6 +16,8 @@ Note that if you prefer to keep your site private, that is ok. You must invite m
 
 In addition to setting up a publicly accessible WordPress site, you need to setup a local WordPress development site. Having a local development site makes WordPress development significantly easier and is the recommended way to develop for WordPress. I recommend using an *AMP system (e.g., [MAMP](http://www.mamp.info/en/index.html), [XAMPP](http://www.apachefriends.org/en/xampp.html)) or Vagrant (e.g., [Varying Vagrant Vagrants](https://github.com/10up/varying-vagrant-vagrants)). 
 
+For more information on installing WordPress, please consult the [WordPress Codex](http://codex.wordpress.org/Installing_WordPress).
+
 ### Setup a Github or Bitbucket account
 
 Later in the course, you will be required to submit coding homework via a version control system (VCS) export. I highly recommend storing your work in a central location such as Github or Bitbucket. This week, you should setup and begin familiarizing yourself with one of these services in anticipation of future assignments. Additionally, if using version control is unfamiliar to you, I recommend getting started by working through Code School's [interactive git training](http://www.codeschool.com/courses/try-git). If you prefer to work with SVN, that it ok. I recommend git as it is what I will be using throughout the course.
