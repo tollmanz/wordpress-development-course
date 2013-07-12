@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Hooks: Actions and Filters</title>
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="css/reveal.min.css">
+		<link rel="stylesheet" href="css/theme/beige.css" id="theme">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- My custom changes -->
+		<link rel="stylesheet" href="lib/css/my-custom.css">
+
+		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+		<script>
+			document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section data-markdown>
+					<script type="text/template">
+						# Hooks: Actions and Filters
+					</script>
+				</section>
+
+				<section>
+					<section data-markdown>
+						<script type="text/template">
+							Hooks allow for execution of additional PHP code during a WordPress load
+						</script>
+					</section>
+
+					<section data-state="screenshot" data-background="images/hooks/post-normal.png"></section>
+					<section data-state="screenshot" data-background="images/hooks/post-with-sharknado.png"></section>
+
+					<section data-markdown>
+						```
+						function sharknado( $content ) {
+							$the_shark = '<img src="sharknado-1.png" />';
+							return $content . $the_shark;
+						}
+						add_filter( 'the_content', 'sharknado' );
+						```
+					</section>
+				</section>
+
+				<section>
+					<section data-markdown>
+						## Actions
+					</section>
+
+					<section data-markdown>
+						Execute additional PHP code at a specific point during the WordPress load
+					</section>	
+
+					<section data-markdown>
+						Places where actions are executed are denoted by: 
+
+						`do_action( 'name' );`
+					</section>	
+
+					<section data-markdown>
+						`wp-settings.php`:
+
+						```
+						// Load the functions for the active theme, for both parent and child theme if applicable.
+						if ( ! defined( 'WP_INSTALLING' ) || 'wp-activate.php' === $pagenow ) {
+							if ( TEMPLATEPATH !== STYLESHEETPATH && file_exists( STYLESHEETPATH . '/functions.php' ) )
+								include( STYLESHEETPATH . '/functions.php' );
+							if ( file_exists( TEMPLATEPATH . '/functions.php' ) )
+								include( TEMPLATEPATH . '/functions.php' );
+						}
+
+						do_action( 'after_setup_theme' );
+						```
+					</section>
+
+					<section data-markdown>
+						To hook into an action, you use:
+
+						`add_action( 'action_name', 'callback_function' );`
+					</section>
+				</section>
+
+				<section>
+					<section data-markdown>
+						## Filters
+					</section>
+
+					<section data-markdown>
+						Hooks that allow for manipulating a piece or pieces of data
+					</section>	
+
+					<section data-markdown>
+						Places where filters are executed are denoted by: 
+
+						`$data = apply_filters( 'filter_name', $original_data );`
+					</section>	
+
+					<section data-markdown>
+						`wp-includes/post-template.php`:
+
+						```
+						function get_the_title( $post = 0 ) {
+							$post = get_post( $post );
+
+							$title = isset( $post->post_title ) ? $post->post_title : '';
+							$id = isset( $post->ID ) ? $post->ID : 0;
+
+							...
+
+							return apply_filters( 'the_title', $title, $id );
+						}
+						```
+					</section>	
+
+					<section data-state="screenshot" data-background="images/hooks/post-normal.png"></section>
+					<section data-state="screenshot" data-background="images/hooks/post-hashtag-filter.png"></section>	
+
+					<section data-markdown>
+						```
+						function add_hash_tag( $title, $id ) {
+							$author = get_the_author();
+							return $title . ' #' . esc_attr( $author );
+						}
+						add_filter( 'the_title', 'add_hash_tag', 10, 2 );	
+						```
+					</section>
+				</section>
+
+				<section>
+					<section data-markdown>
+						## Plugins and Themes are in a Relationship with WordPress
+
+						Hooks are how they communicate
+					</section>
+
+					<section data-markdown>
+						## Actions
+
+						"Take out the garbage"
+
+						"Mow the lawn"
+
+						"Walk the dog"
+					</section>
+
+					<section data-markdown>
+						## Filters
+
+						Like a parent changing a child's behavior
+
+						"Say 'Thank you'"
+					</section>
+				</section>
+			</div>
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.min.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+					// { src: 'plugin/search/search.js', async: true, condition: function() { return !!document.body.classList; } }
+					// { src: 'plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+		</script>
+	</body>
+</html>
