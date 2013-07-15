@@ -171,6 +171,247 @@
 
 						"Say 'Thank you'"
 					</section>
+
+				</section>
+
+				<section>
+					<section data-markdown>
+						## Priority and Arguments
+					</section>
+
+					<section data-markdown>
+						## Priority
+
+						Defines when a hook will run
+
+						Allows a developer to run code before or after other code
+
+						Default priority is 10
+					</section>
+
+					<section data-markdown>
+						```php
+						function support_sharknado_relief( $content ) {
+							$url  = 'http://stopsharknados.com';
+							$text = __( 'Stop Sharknados Now!', 'sharknado' );
+							$link = '&lt;p&gt;&lt;a href="' . $url . '"&gt;' . $text . '&lt;/a&gt;&lt;/p&gt;';
+							return $content . $link;
+						}
+						add_filter( 'the_content', 'support_sharknado_relief', 10 );
+						```
+					</section>
+
+					<section data-state="screenshot" data-background="images/hooks/post-support-sharknado-priority-10.png"></section>
+
+					<section data-markdown>
+						```php
+						function support_sharknado_relief( $content ) {
+							$url  = 'http://stopsharknados.com';
+							$text = __( 'Stop Sharknados Now!', 'sharknado' );
+							$link = '&lt;p&gt;&lt;a href="' . $url . '"&gt;' . $text . '&lt;/a&gt;&lt;/p&gt;';
+							return $content . $link;
+						}
+						add_filter( 'the_content', 'support_sharknado_relief', 1000 );
+						```
+					</section>
+
+					<section data-state="screenshot" data-background="images/hooks/post-support-sharknado-priority-1000.png"></section>
+
+					<section data-markdown>
+						## Arguments
+
+						The number of arguments sent to the callback function
+
+						Default is 1
+
+						If the callback function takes more than 1 argument, you need to increase this number
+					</section>
+
+					<section data-markdown>
+						```php
+						function sharknado_the_title( $title ) {
+							$image = 'images/shark-emoticon.jpg';
+							$html  = ' &lt;img src="' . $image . '" /&gt;';
+							return $title . $html;
+						}
+						add_filter( 'the_title', 'sharknado_the_title', 10 );
+						```
+					</section>
+
+					<section data-state="screenshot" data-background="images/hooks/post-title-shark-icon.png"></section>
+
+					<section data-markdown>
+						```php
+						function get_the_title( $post = 0 ) {
+							$post = get_post( $post );
+							$title = isset( $post->post_title ) ? $post->post_title : '';
+							$id = isset( $post->ID ) ? $post->ID : 0;
+
+							if ( ! is_admin() ) {
+								if ( ! empty( $post->post_password ) ) {
+									$protected_title_format = apply_filters( 'protected_title_format', __( 'Protected: %s' ) );
+									$title = sprintf( $protected_title_format, $title );
+								} else if ( isset( $post->post_status ) && 'private' == $post->post_status ) {
+									$private_title_format = apply_filters( 'private_title_format', __( 'Private: %s' ) );
+									$title = sprintf( $private_title_format, $title );
+								}
+							}
+
+							return apply_filters( 'the_title', $title, $id );
+						}
+						```
+					</section>
+
+					<section data-markdown>
+						```php
+						function sharknado_the_title( $title ) {
+							$image = 'images/shark-emoticon.jpg';
+							$html  = ' &lt;img src="' . $image . '" /&gt;';
+							return $title . $html;
+						}
+						add_filter( 'the_title', 'sharknado_the_title', 10 );
+						```
+					</section>
+
+					<section data-markdown>
+						```php
+						function sharknado_the_title( $title, $id ) {
+							if ( 0 === $id % 2 ) {
+								return $title;
+							} else {
+								$image = 'images/shark-emoticon.jpg';
+								$html  = ' &lt;img src="' . $image . '" /&gt;';
+								return $title . $html;
+							}
+						}
+						add_filter( 'the_title', 'sharknado_the_title', 10, 2 );
+						```
+					</section>
+
+					<section data-state="screenshot" data-background="images/hooks/post-title-shark-icon-odd.png"></section>
+
+				</section>
+
+				<section>
+					<section data-markdown>
+						## How Hooks Work
+					</section>
+
+					<section data-markdown>
+						`add_action()` and `add_filter()` add information to `$wp_filter`
+					</section>
+
+					<section data-markdown>
+						```
+						add_filter( 'the_content', 'support_sharknado_relief' );
+						```
+
+						```
+						 'the_content' => 
+						    array (size=5)
+						      10 => 
+						        array (size=2)
+						          'support_sharknado_relief' => 
+						            array (size=2)
+						              'function' => string 'support_sharknado_relief' (length=16)
+						              'accepted_args' => int 1
+            			```
+					</section>
+
+					<section data-markdown>
+						```
+						add_filter( 'the_content', 'support_sharknado_relief', 1000 );
+						```
+
+						```
+						 'the_content' => 
+						    array (size=5)
+						      1000 => 
+						        array (size=2)
+						          'support_sharknado_relief' => 
+						            array (size=2)
+						              'function' => string 'support_sharknado_relief' (length=16)
+						              'accepted_args' => int 1
+						```
+					</section>
+
+					<section data-markdown>
+						`do_action()` and `apply_filters()` reference the `$wp_filter` to run functions
+					</section>
+
+					<section data-markdown>
+						```php
+						function sharknado_the_title( $title ) {
+							$image = 'images/shark-emoticon.jpg';
+							$html  = ' &lt;img src="' . $image . '" /&gt;';
+							return $title . $html;
+						}
+						add_filter( 'the_title', 'sharknado_the_title', 10 );
+						```
+					</section>
+
+					<section data-markdown>
+						```php
+						function get_the_title( $post = 0 ) {
+							$post = get_post( $post );
+							$title = isset( $post->post_title ) ? $post->post_title : '';
+							$id = isset( $post->ID ) ? $post->ID : 0;
+
+							if ( ! is_admin() ) {
+								if ( ! empty( $post->post_password ) ) {
+									$protected_title_format = apply_filters( 'protected_title_format', __( 'Protected: %s' ) );
+									$title = sprintf( $protected_title_format, $title );
+								} else if ( isset( $post->post_status ) && 'private' == $post->post_status ) {
+									$private_title_format = apply_filters( 'private_title_format', __( 'Private: %s' ) );
+									$title = sprintf( $private_title_format, $title );
+								}
+							}
+
+							return apply_filters( 'the_title', $title, $id );
+						}
+						```
+					</section>
+
+					<section data-state="screenshot" data-background="images/hooks/post-title-shark-icon.png"></section>
+
+					<section>
+						<p>Looks for all references in <code>$wp_filter</code></p>
+						<p class="fragment">Executes all functions for that hook</p>
+					</section>
+
+					<section data-markdown>
+						```
+						array (size=2)
+						  10 => 
+						    array (size=5)
+						      'wptexturize' => 
+						        array (size=2)
+						          'function' => string 'wptexturize' (length=11)
+						          'accepted_args' => int 1
+						      'convert_chars' => 
+						        array (size=2)
+						          'function' => string 'convert_chars' (length=13)
+						          'accepted_args' => int 1
+						      'trim' => 
+						        array (size=2)
+						          'function' => string 'trim' (length=4)
+						          'accepted_args' => int 1
+						      '_post_formats_title' => 
+						        array (size=2)
+						          'function' => string '_post_formats_title' (length=19)
+						          'accepted_args' => int 2
+						      'sharknado_the_title' => 
+						        array (size=2)
+						          'function' => string 'sharknado_the_title' (length=19)
+						          'accepted_args' => int 2
+						  11 => 
+						    array (size=1)
+						      'capital_P_dangit' => 
+						        array (size=2)
+						          'function' => string 'capital_P_dangit' (length=16)
+						          'accepted_args' => int 1
+						```
+					</section>
 				</section>
 			</div>
 		</div>
