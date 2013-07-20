@@ -105,10 +105,9 @@ License: GNU General Public License v2 or later
 
 ![Make sense of WordPress Core Load - By Rarst (http://www.rarst.net/script/wordpress-core-load/)](https://raw.github.com/tollmanz/wordpress-development-course/master/lectures/assets/wordpress_core_load.png "Make sense of WordPress Core Load - By Rarst (http://www.rarst.net/script/wordpress-core-load/)")
 
-## Important Actions and Filters
+## Finding the Right Hook
 
-Resources:
-
-* [Filters of The Day](http://fotd.werdswords.com/)
-
-## Best Practices
+* [Codex Action Reference](http://codex.wordpress.org/Plugin_API/Action_Reference) highlights important hooks to be aware of
+* [Filters of The Day](http://fotd.werdswords.com/) is a new project that highlights a few filters per day
+* Reading core WordPress
+* Experience
