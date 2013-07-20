@@ -2,7 +2,9 @@
 
 * WordPress uses an "enqueues" system for adding JS and CSS to a page. 
 * The enqueue system allows a developer to declare dependencies and use JS/CSS that is included with WordPress.
-* Not using the enqueues system can cause plugin conflicts that can break a site
+* Not using the enqueues system can cause plugin conflicts that can break a site.
+	* e.g., Loading jQuery twice will cause JS errors
+	* e.g., Loading scripts out of order will cause JS errors
 
 ### wp_enqueue_script()
 
@@ -151,5 +153,3 @@ function pimple_add_button( $content ) {
 
 add_filter( 'the_content', 'pimple_add_button', 20 );
 ```
-
-
