@@ -198,3 +198,102 @@ function zdt_render_options_page() {
 Results in:
 
 ![Sample options page](https://raw.github.com/tollmanz/wordpress-development-course/master/lectures/assets/sample-options-page.png)
+
+### Add Options Page to Pimpletrest Plugin
+
+1. Need a page that will eventually be used for plugin settings
+1. First, register the page
+1. Second, render the page
+
+```php
+<?php
+/*
+Plugin Name: Pimpletrest
+Plugin URI: http://github.com/tollmanz/wordpress-development-course
+Version: 1.0
+Description: Adds a pinterest button to single posts.
+Author: Zack Tollman
+Author URI: http://tollmanz.com
+License: GNU General Public License v2 or later
+*/
+
+/**
+ * Add the Pinterest script prior to the closing body tag.
+ *
+ * @since  1.0.
+ *
+ * @return void
+ */
+function pimple_enqueue_script() {
+	// Load the Pinterest script in the footer
+	wp_enqueue_script(
+		'pimple-pinterest',
+		'//assets.pinterest.com/js/pinit.js',
+		array(),
+		null,
+		true
+	);
+}
+
+add_action( 'wp_enqueue_scripts', 'pimple_enqueue_script' );
+
+/**
+ * Append the Pinterest button to content on single post pages.
+ *
+ * @since  1.0.
+ *
+ * @param  string    $content    The original content.
+ * @return string                The modified content.
+ */
+function pimple_add_button( $content ) {
+	if ( is_single() ) {
+		// Create the Pinterest button HTML
+		$button_html  = '<a href="//pinterest.com/pin/create/button/" data-pin-do="buttonBookmark">';
+		$button_html .= '<img src="//assets.pinterest.com/images/pidgets/pin_it_button.png" />';
+		$button_html .= '</a>';
+
+		// Append the button to the content
+		$content .= $button_html;
+	}
+
+	return $content;
+}
+
+add_filter( 'the_content', 'pimple_add_button', 20 );
+
+/**
+ * Add an options page for the plugin.
+ *
+ * @since  1.0.
+ *
+ * @return void
+ */
+function pimple_add_options_page() {
+	// Add new page under the "Settings tab
+	add_options_page(
+		__( 'Pimpletrest Options' ),
+		__( 'Pimpletrest Options' ),
+		'manage_options',
+		'pimple_options_page',
+		'pimple_render_options_page'
+	);
+}
+
+add_action( 'admin_menu', 'pimple_add_options_page' );
+
+/**
+ * Render the options page.
+ *
+ * @since  1.0.
+ *
+ * @return void
+ */
+function pimple_render_options_page() {
+	?>
+	<div class="wrap">
+		<?php screen_icon(); ?>
+		<h2><?php _e( 'Pimpletrest Options' ); ?></h2>
+	</div>
+	<?php
+}
+```
