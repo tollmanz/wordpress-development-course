@@ -153,3 +153,48 @@ function pimple_add_button( $content ) {
 
 add_filter( 'the_content', 'pimple_add_button', 20 );
 ```
+
+## Add Options Page
+
+* WordPress provides a simple API for adding new pages in the admin screen.
+* There are functions that allow you to add pages to each part of the admin screen.
+* To add a page that is organized under the "Settings" tab, use `add_options_page()`
+
+### add_options_page()
+
+Arguments:
+
+* `page_title`: text displayed in the page's `<title>` element
+* `menu_title`: text displayed in the menu
+* `capability`: capability required for the menu to be displayed
+* `menu_slug`: the unique id used to refer to this page
+* `function`: the function used that generates the markup for the page
+
+Example:
+
+```php
+function zdt_add_options_page() {
+	add_options_page(
+		__( 'ZDT Options' ),
+		__( 'ZDT Options' ),
+		'manage_options',
+		'zdt_options_page',
+		'zdt_render_options_page'
+	);
+}
+add_action( 'admin_menu', 'zdt_add_options_page' );
+
+function zdt_render_options_page() {
+	?>
+	<div class="wrap">
+		<?php screen_icon(); ?>
+		<h2><?php _e( 'The Options' ); ?></h2>
+		<p>This is the page.</p>
+	</div>
+	<?php
+}
+```
+
+Results in:
+
+![Sample options page](https://raw.github.com/tollmanz/wordpress-development-course/master/lectures/assets/sample-options-page.png)
