@@ -1,6 +1,6 @@
-# Homework Due July 28, 2013 at 6 PM PST
+# Homework Due July 29, 2013 at 6 PM PST
 
-This document outlines the homework that is assigned on July 21, 2013 and due on July 28, 2013 at 6 PM PST.
+This document outlines the homework that is assigned on July 22, 2013 and due on July 29, 2013 at 6 PM PST.
 
 ## Sharkquake AddThis Buttons
 
@@ -35,7 +35,7 @@ In discussing the specifications with the client, you have agreed on the followi
 
 ## What to turn in
 
-By July 28, 2013 at 6 PM PST, you must send me an email (see syllabus for email address) with all of the following: 
+By July 29, 2013 at 6 PM PST, you must send me an email (see syllabus for email address) with all of the following: 
 
 * Email me a copy of your plugin as a .zip file. I should be able to easily install the plugin through the WordPress admin.
 * Email me a link to the plugin on your Github account. It is *very important* that I am able to see your work on this assignment through Github commits.
