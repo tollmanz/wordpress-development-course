@@ -1,3 +1,8 @@
+## What Are Plugins?
+
+* Plugins are packaged pieces of code that extended WordPress' native functionality.
+* Plugins *tend* to be differentiated from WordPress themes in that plugins change functionality, whereas themes change appearance; however, this line is often blurred
+
 ## Installing plugins
 
 * Install from the WordPress.org repo

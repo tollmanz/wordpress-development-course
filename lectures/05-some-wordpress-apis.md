@@ -324,7 +324,7 @@ References:
 
 Arguments:
 
-* `option_group`: defines what group of options the setting belongs to. The group is defined in `settings_field()`
+* `option_group`: defines what group of options the setting belongs to. The group is used by `settings_field()`.
 * `option_name`: the name of the option
 * `sanitize_callback`: the name of the function used to sanitize/validate the setting before saving it to the database
 
@@ -351,6 +351,22 @@ Arguments:
 * `page`: the menu page to display the field on
 * `section`: section in which to display the field
 * `args`: additional arguments to pass the to callback function
+
+### settings_fields()
+
+* Prints boilerplate code to allow settings inputs to be submitted
+
+Arguments:
+
+* `option_group`: settings group name, which should match value used in `register_setting()`
+
+### do_settings_sections()
+
+* Output all settings for a specific page
+
+Arguments:
+
+* `page`: the name of the page to print settings for
 
 ### Add a Setting to Pimpletrest
 
