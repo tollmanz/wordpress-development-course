@@ -4,13 +4,13 @@ This document outlines the homework that is assigned on July 29, 2013 and due on
 
 ## Modify My Theme
 
-Upon hearing that you are in a WordPress class, your best friend (or at least he thinks he is) asks you to help modify his WordPress theme. He is starting a blog how awesome he is, which is pretty awesome.
+Upon hearing that you are in a WordPress class, your best friend (or at least he thinks he is) asks you to help modify his WordPress theme. He is starting a blog about how awesome he is, which is pretty awesome.
 
 Your new "best friend" really likes the default Twenty Twelve theme; however, he bemoans the lack of color in the theme. Additionally, he confides that he needs some other changes to the theme as well. Because you owe him for bailing you out of jail that one time, you agree to make changes to his theme.
 
 Here are his specific requirements and your todo list for this homework:
 
-1. Your friend laments an experience when another friend customized his theme, but then lost all of the customizations when he updated the theme. Modify his theme in such a way that the main theme can be updated and the customizations not be lost. He claims that this his previous experience was not awesome and he wants this experience to be awesome.
+1. Your friend laments an experience when another friend customized his theme, but then lost all of the customizations when he updated the theme. Modify his theme in such a way that the main theme can be updated and the customizations not be lost. He claims that his previous experience was not awesome and he wants this experience to be awesome.
 1. Your friend wants a lot of color. In particular, he wants some purple in the theme. Please add some color to the theme. Just make sure you add some purple.
 1. Because all of the posts are written by your friend, he thinks it is silly that on single post pages, the author name is displayed. Remove the author information from single post pages.
 1. Let's admit it; your friend is a touch narcissistic. As evidence for this claim, your friend indicates that he wants the `<title>` tag in his theme, which defines the title of the site in a browser tab, to always display "I Am Awesome". Do this for him; however, do it via a filter, not by altering a template file.
