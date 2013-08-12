@@ -13,6 +13,8 @@
 * `priority`: Where to display the metabox in the context relative to other ones
 * `callback_args`: Values to send to the callback function
 
+* Resource: http://www.wproots.com/complex-meta-boxes-in-wordpress/
+
 ## Post meta
 
 * An API for setting/getting data from the `wp_postmeta` table
