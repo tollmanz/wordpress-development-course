@@ -1,0 +1,20 @@
+/*
+Theme Name: Purple Rain
+Theme URI: http://tollmanz.com
+Author: tollmanz
+Author URI: http://wordpress.org/
+Description: A purple 20-12
+Version: 1.1
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Template: twentytwelve
+
+This theme, like WordPress, is licensed under the GPL.
+Use it to make something cool, have fun, and share what you've learned with others.
+*/
+
+@import url( '../twentytwelve/style.css' );
+
+body {
+	background: mediumpurple;
+}
