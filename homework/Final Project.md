@@ -32,8 +32,20 @@ After submitting the initial **readme.txt** file, you will receive feedback from
 
 ## The Plugin (40 points)
 
-Information forthcoming...
+The final plugin is due as a zip file on September 9th at 6 PM PST. It is important that you submit a polished final product. The plugin should be ready to distribute publicly, including a final readme.txt file and any necessary screenshots. The final plugin will be graded according to the following rubric:
+
+| Area                           | Points |
+| :----------------------------: | :----: |
+| Plugin installs without errors | 5      |
+| Plugin functions as described  | 20     |
+| Code follows best practices    | 15     |
 
 ## The Presentation (5 points)
 
-Information forthcoming...
+All presentations will take place on the final day of class. The presentations will be up to 5 minutes long, with an additional 2 minutes for questions. Successful presentations should include the following information:
+
+* Explains the problem that the plugin solves
+* Demonstrates how the plugin works
+* Explains how the plugin solves the problem
+
+The manner in which the plugin is presented is up to the presenter; however, you will likely need to show screenshots, live demonstrations, and/or code to successfully demonstrate your plugin.
