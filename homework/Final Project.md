@@ -40,6 +40,13 @@ The final plugin is due as a zip file on September 9th at 6 PM PST. It is import
 | Plugin functions as described  | 20     |
 | Code follows best practices    | 15     |
 
+Regarding the "Code follows best practices" category, I am specifically looking for the following:
+
+* Plugin is written to increase chances of compatibility with other plugins and themes
+* Plugin is secure
+* Plugin uses WordPress APIs as appropriate
+* Plugin uses hooke (actions/filters) to achieve its functionality
+
 ## The Presentation (5 points)
 
 All presentations will take place on the final day of class. The presentations will be up to 5 minutes long, with an additional 2 minutes for questions. Successful presentations should include the following information:
