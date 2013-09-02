@@ -16,18 +16,18 @@ License:     GPLv2 or later
  * @param  object    $post         The current post object.
  * @return void
  */
-function call_meta_box( $post_type, $post ) {
+function zdt_call_meta_box( $post_type, $post ) {
 	add_meta_box(
 		'byebyebye_line',
-		__( 'Bye Bye Bye Line', 'byebyebye_lines' ),
-		'display_meta_box',
+		__( 'Bye Bye Bye Line', 'zdt_byebyebye_lines' ),
+		'zdt_display_meta_box',
 		'post',
 		'side',
 		'high'
 	);
 }
 
-add_action( 'add_meta_boxes', 'call_meta_box', 10, 2 );
+add_action( 'add_meta_boxes', 'zdt_call_meta_box', 10, 2 );
 
 /**
  * Display the HTML for the metabox.
@@ -36,15 +36,17 @@ add_action( 'add_meta_boxes', 'call_meta_box', 10, 2 );
  * @param  array     $args    Additional arguments for the metabox.
  * @return void
  */
-function display_meta_box( $post, $args ) {
+function zdt_display_meta_box( $post, $args ) {
+	wp_nonce_field( 'save', 'zdt-byebyebye-line' );
+	$byebyebye_line = get_post_meta( get_the_ID(), '_zdt-byebyebye-line', true );
 ?>
 	<p>
 		<label for="byeline">
-			<?php _e( 'Bye Bye Bye Line', 'byebyebye_lines' ); ?>:&nbsp;
+			<?php _e( 'Bye Bye Bye Line', 'zdt_byebyebye_lines' ); ?>:&nbsp;
 		</label>
-		<input type="text" class="widefat" name="byeline" value="" />
+		<input type="text" class="widefat" name="byeline" value="<?php echo esc_attr( $byebyebye_line ); ?>" />
 		<em>
-			<?php _e( 'HTML is not allowed', 'byebyebye_lines' ); ?>
+			<?php _e( 'HTML is not allowed', 'zdt_byebyebye_lines' ); ?>
 		</em>
 	</p>
 <?php
@@ -56,16 +58,38 @@ function display_meta_box( $post, $args ) {
  * @param  int       $post_id    The ID for the current post.
  * @param  object    $post       The current post object.
  */
-function save_meta_box( $post_id, $post ) {
-	if ( ! isset( $_POST['byeline'] ) ) {
+function zdt_save_meta_box( $post_id, $post ) {
+	// Do not save during autosave routines
+	if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE )
+		return;
+
+	// If value is not available, exit function
+	if ( ! isset( $_POST['zdt_byeline'] ) ) {
 		return;
 	}
 
-	$byeline = $_POST['byeline'];
-	update_post_meta( $post_id, 'byebyebye-line', $byeline );
+	// Verify permissions before saving
+	if ( isset( $_POST[ 'post_type' ] ) && 'page' === $_POST[ 'post_type' ] ) {
+		if ( ! current_user_can( 'edit_page', $post_id ) ) {
+			return;
+		}
+	} else {
+		if ( ! current_user_can( 'edit_post', $post_id ) ) {
+			return;
+		}
+	}
+
+	// Check the nonce to secure against CSRF
+	if ( isset( $_POST[ 'zdt-byebyebye-line' ] ) && wp_verify_nonce( $_POST[ 'zdt-byebyebye-line' ], 'save' ) ) {
+		if ( is_numeric( $_POST['zdt_byeline'] ) ) {
+			update_post_meta( $post_id, '_zdt-byebyebye-line', sanitize_text_field( $_POST['zdt_byeline'] ) );
+		} else {
+			delete_post_meta( $post_id, '_zdt-byebyebye-line' );
+		}
+	}
 }
 
-add_action( 'save_post', 'save_meta_box', 10, 2 );
+add_action( 'save_post', 'zdt_save_meta_box', 10, 2 );
 
 /**
  * Append the Bye Bye Bye Line to the content.
@@ -73,9 +97,9 @@ add_action( 'save_post', 'save_meta_box', 10, 2 );
  * @param  string    $content    The original content.
  * @return string                The altered content.
  */
-function print_byebyebye_line( $content ) {
-	$byebyebye_line = get_post_meta( get_the_ID(), 'byebyebye-line', true );
-	return $content . $byebyebye_line;
+function zdt_print_byebyebye_line( $content ) {
+	$byebyebye_line = get_post_meta( get_the_ID(), '_zdt-byebyebye-line', true );
+	return $content . esc_html( $byebyebye_line );
 }
 
-add_filter( 'the_content', 'print_byebyebye_line' );
+add_filter( 'the_content', 'zdt_print_byebyebye_line' );
